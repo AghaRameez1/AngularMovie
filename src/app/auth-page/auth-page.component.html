@@ -1,0 +1,145 @@
+<div class="card-container">
+  <div class="row">
+    <div class="col-6">
+      <mat-card>
+        <mat-card-content>
+          <div *ngIf="state">
+            <form [formGroup]="signUpform" class="form-horizontal">
+              <div class="col-12 form-group">
+                <mat-label>Username:</mat-label>
+                <input class='form-control' type='email' formControlName="username">
+                <span *ngIf="username?.touched">
+                  <span
+                    *ngIf="username?.hasError('required') && username?.dirty"
+                    class="error">Username is required</span>
+                    <span
+                      *ngIf="username?.hasError('pattern') && username?.dirty"
+                      class="error">Special Characters are not allowed</span>
+                    </span>
+              </div>
+<!--              <div class="col-12 form-group">-->
+<!--                <mat-label>Email:</mat-label>-->
+<!--                <input class="form-control" type="email" formControlName="email"/>-->
+<!--                <span *ngIf="(email?.touched)">-->
+<!--                  <span *ngIf="email?.hasError('required') && email?.dirty"-->
+<!--                        class="error">Email is required</span>-->
+<!--                  <span *ngIf="email?.hasError('pattern') && email?.dirty"-->
+<!--                        class="error">Email pattern is required</span>-->
+<!--                    </span>-->
+<!--              </div>-->
+              <div class="col-12 form-group">
+
+                <mat-label>Password:</mat-label>
+                <input class="form-control" type="password" formControlName="password"/>
+                <span *ngIf="(password?.touched)">
+                    <span
+                      *ngIf="password?.hasError('required') && password?.dirty"
+                      class="error">Password is required</span>
+                    <span
+                      *ngIf="password?.hasError('minlength') && password?.dirty"
+                      class="error">Password length is short</span>
+                  </span>
+              </div>
+              <div class="col-12 form-group">
+
+                <mat-label>Confirm Password:</mat-label>
+                <input class="form-control" type="password" formControlName="confirm_password"/>
+                <span *ngIf="(confirm_password?.touched)">
+                    <span
+                      *ngIf="confirm_password?.hasError('required') && confirm_password?.dirty"
+                      class="error">Password is required</span>
+                    <span
+                      *ngIf="confirm_password?.hasError('minlength') && confirm_password?.dirty"
+                      class="error">Password length is short</span>
+                  </span>
+              </div>
+              <div class="col-12 form-group">
+                <mat-label>First Name:</mat-label>
+                <input class="form-control" type="text" formControlName="first_name"/>
+                <span
+                  *ngIf="first_name?.hasError('required') && (first_name?.touched && first_name?.dirty)"
+                  class="error">First Name is required</span>
+              </div>
+              <div class="col-12 form-group">
+                <mat-label>Last Name:</mat-label>
+                <input class="form-control" type="text" formControlName="last_name"/>
+                <span
+                  *ngIf="last_name?.hasError('required') && (last_name?.touched && last_name?.dirty)"
+                  class="error">Last Name is required</span>
+              </div>
+              <div class="text-right">
+                <button mat-raised-button color="blue" (click)="verifyUser()">Verify User</button>
+                <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+              </div>
+            </form>
+          </div>
+          <div *ngIf="!state">
+            <form novalidate [formGroup]="confirmUser" class="form-horizontal">
+              <div class="col-12 form-group">
+                <mat-label>Username:</mat-label>
+                <input class="form-control" type="text" formControlName="username_confirm">
+                <span
+                  *ngIf="username_confirmation?.hasError('required') && (username_confirmation?.touched && username_confirmation?.dirty)"
+                  class="error">Username is required</span>
+              </div>
+              <div class="col-12 form-group">
+                <mat-label>Confirmation Code :</mat-label>
+                <input class="form-control" type="text" formControlName="confirmation_code">
+                <span
+                  *ngIf="confirmation_code?.hasError('required') && (confirmation_code?.touched && confirmation_code?.dirty)"
+                  class="error">Confirmation code is required</span>
+
+              </div>
+              <div class="text-right">
+                <button mat-raised-button color="blue" (click)="verifyUser()">Sign Up</button>
+                <button mat-raised-button color="primary" (click)="onSubmitConfirmUser()">Submit</button>
+              </div>
+            </form>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-6">
+      <mat-card>
+        <mat-card-content>
+          <form novalidate [formGroup]="signInForm" (submit)="onSubmitSignIn()" class="form-horizontal">
+            <div class="col-12 form-group">
+              <mat-label>Username:</mat-label>
+              <input class="form-control" type="text" formControlName="username_signin">
+              <span *ngIf="username_signin?.dirty">
+                  <span
+                    *ngIf="username_signin?.hasError('required') && username_signin?.touched"
+                    class="error">Username is required</span>
+                  <span
+                    *ngIf="username_signin?.hasError('pattern') && username_signin?.touched"
+                    class="error">Special Characters are not allowed</span>
+                  </span>
+            </div>
+            <div class="col-12 form-group">
+              <mat-label>Password:</mat-label>
+              <input class="form-control" type="password" formControlName="password_signin">
+              <span
+                *ngIf="password_signin?.hasError('required') && (password_signin?.touched && password_signin?.dirty)"
+                class="error">Password is required</span>
+            </div>
+            <div class="col-md-12">
+              <div class="spinner-container" *ngIf="loading">
+                <mat-progress-spinner
+                  color="warn"
+                  mode="indeterminate" diameter="20">
+                </mat-progress-spinner>
+              </div>
+              <div class="text-right">
+                <button mat-raised-button [disabled]="loading" color="primary" (click)="onSubmitSignIn()">
+
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

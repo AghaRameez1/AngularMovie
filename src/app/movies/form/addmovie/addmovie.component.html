@@ -1,0 +1,59 @@
+<div class='modal-content main'>
+  <div class='modal-header'>
+
+    <p class='modal-title'>{{ inEditMode() ? "Edit": "Create" }}</p>
+    <a (click)="modal.dismiss('Cross click')" aria-label='Close' class='close'>
+      <span aria-hidden='true'>&times;</span>
+    </a>
+  </div>
+  <div class='modal-body'>
+  <form [formGroup]="createMovieForm" class="form-horizontal">
+    <div class="col-12 form-group">
+      <mat-label>Title:</mat-label>
+      <input class='form-control' type='text' formControlName="title">
+      <span *ngIf="title?.touched && title?.dirty">
+                  <span
+                    *ngIf="title?.hasError('required')"
+                    class="error">Title is required</span>
+                    </span>
+    </div>
+    <div class="col-12 form-group">
+      <mat-label>Plot:</mat-label>
+      <input class="form-control" type="text" formControlName="plot"/>
+      <span *ngIf="(plot?.touched && plot?.dirty)">
+                  <span *ngIf="plot?.hasError('required')"
+                        class="error">Plot is required</span>
+                    </span>
+    </div>
+    <div class="col-12 form-group">
+
+      <mat-label>Rating:</mat-label>
+      <input class="form-control" type="number" formControlName="rating" min="0" max="10" step="1"/>
+      <span *ngIf="(rating?.touched)">
+                    <span
+                      *ngIf="rating?.hasError('required') && rating?.dirty"
+                      class="error">Rating is required</span>
+                  </span>
+    </div>
+    <div class="col-12 form-group">
+      <mat-label>Year:</mat-label>
+      <input class="form-control" type="text" formControlName="year"/>
+      <span *ngIf=" (year?.touched && year?.dirty)">
+        <span
+        *ngIf="year?.hasError('required')" class="error">Year is required</span>
+        <span
+          *ngIf="year?.hasError('pattern')" class="error">Only 4 letter are allowed</span>
+      </span>
+    </div>
+    <div class="text-right">
+
+    </div>
+  </form>
+</div>
+</div>
+<div class='modal-footer'>
+  <button mat-raised-button color="primary" (click)="onSubmit()">
+    <span *ngIf="processing" class='spinner-border spinner-border-sm mr-1'></span>{{ inEditMode() ? "Update": "Submit" }}</button>
+<!--    <span *ngIf='isProcessing' class='spinner-border spinner-border-sm mr-1'></span>Submit-->
+</div>
+

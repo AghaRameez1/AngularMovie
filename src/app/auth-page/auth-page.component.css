@@ -1,0 +1,6 @@
+.spinner-container{
+  position: absolute;
+  right: 45px;
+  z-index: 1;
+  bottom: 9px;
+}

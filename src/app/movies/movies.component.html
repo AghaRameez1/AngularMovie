@@ -1,0 +1,45 @@
+<div class="card-container">
+  <button mat-raised-button color="primary" (click)="getlistOfMovies()">Get List of Movies</button>
+  <button mat-raised-button color="accent" (click)="createMovie()">Add Movie</button>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-template #noValue>
+      <td>No Value</td>
+    </ng-template>
+      <ng-container matColumnDef="movie_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
+        <td mat-cell *matCellDef="let element"><ng-template *ngIf="element?.movie_name; else noValue"></ng-template>{{element.movie_name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="movie_language">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Language</th>
+        <td mat-cell *matCellDef="let element"><ng-template *ngIf="element?.movie_language; else noValue"></ng-template> {{element.movie_language}} </td>
+      </ng-container>
+      <ng-container matColumnDef="movie_genre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Genre</th>
+        <td mat-cell *matCellDef="let element"><ng-template *ngIf="element?.movie_genre; else noValue"></ng-template> {{element.movie_genre}} </td>
+      </ng-container>
+      <ng-container matColumnDef="movie_image">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Image</th>
+        <td mat-cell *matCellDef="let element"><img height="150" src="http://localhost:8000/static/{{element.movie_image}}">  </td>
+      </ng-container>
+    <ng-container matColumnDef="movie_url">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Movie Url</th>
+      <td mat-cell *matCellDef="let element"><img height="150" src="{{element.movie_url}}">  </td>
+    </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="warn" (click)="deleteMovie(element.title)">Delete</button>
+          <button mat-button color="primary" (click)="editMovie(element)">Edit</button>
+
+        </td>
+      </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data available</td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+

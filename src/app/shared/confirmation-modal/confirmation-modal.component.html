@@ -1,0 +1,16 @@
+<div class="modal-container">
+  <div class="modal-header d-flex justify-content-between align-items-center">
+    <p class="modal-title">{{ title?title:'Delete'}}</p>
+    <a class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </a>
+  </div>
+  <div class="modal-body">
+    <p>{{ heading?heading:'Are you sure? This action cannot be undone.'}}</p>
+    <p>{{ message }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark btn-sm px-4" (click)="modal.close(false)">No</button>
+    <button type="button" class="btn btn-primary btn-sm px-4" (click)="modal.close(true)">Yes</button>
+  </div>
+</div>
