@@ -12,6 +12,8 @@ COPY ./ /usr/local/app/
 # Install all the dependencies
 RUN npm install
 
+RUN npm i --save-dev @types/node
+
 # Generate the build of the application
 RUN npm run build --prod
 
@@ -23,7 +25,5 @@ FROM nginx:latest
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /usr/local/app/dist/learning-app /usr/share/nginx/html
-
-
 # Expose port 80
 EXPOSE 80
