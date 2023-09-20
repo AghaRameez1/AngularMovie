@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  url: 'http://127.0.0.1:8000/',
+  url: 'http://django.agharameez.django.com/',
   production: false
 };
 
