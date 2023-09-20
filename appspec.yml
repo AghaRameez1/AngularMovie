@@ -11,8 +11,16 @@ permissions:
     owner: ec2-user
     group: ec2-user
 hooks:
-  ApplicationStart:
-    # start the application
+  BeforeInstall:
+    - deploy/stop_service.sh
+      timeout: 300
+      runas: root
+  Install:
     - location: deploy/start.sh
       timeout: 300
-      runas: ec2-user
+      runas: root
+  AfterInstall:
+    # start the application
+    - location: deploy/start_nginx.sh
+      timeout: 300
+      runas: root

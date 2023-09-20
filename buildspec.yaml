@@ -20,7 +20,7 @@ phases:
       - echo "build complete"
   post_build:
     commands:
-      - mv appspec.yaml ./dist/learning-app
+      - mv appspec.yml ./dist/learning-app
       - mv deploy ./dist/learning-app
 artifacts:
   files:
