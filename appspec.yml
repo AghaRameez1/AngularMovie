@@ -3,7 +3,7 @@ os: linux
 files:
   # unzip the build artifact in ~/app
   - source: /
-    destination: /home/ec2-user
+    destination: /home/ec2-user/
 permissions:
   # change permissions from root to ec2-user
   - object: /home/ec2-user/app
@@ -12,7 +12,7 @@ permissions:
     group: ec2-user
 hooks:
   BeforeInstall:
-    - deploy/stop_service.sh
+    - location: deploy/stop_service.sh
       timeout: 300
       runas: root
   Install:
