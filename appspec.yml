@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 files:
   # unzip the build artifact in ~/app
-  - source: /
-    destination: /home/ec2-user/
+  - source: ./*
+    destination: /home/ec2-user/app
 permissions:
   # change permissions from root to ec2-user
   - object: /home/ec2-user/app
@@ -12,15 +12,15 @@ permissions:
     group: ec2-user
 hooks:
   BeforeInstall:
-    - location: deploy/stop_service.sh
+    - location: /home/ec2-user/app/deploy/stop_service.sh
       timeout: 300
       runas: root
   Install:
-    - location: deploy/start.sh
+    - location: /home/ec2-user/app/deploy/start.sh
       timeout: 300
       runas: root
   AfterInstall:
     # start the application
-    - location: deploy/start_nginx.sh
+    - location: /home/ec2-user/app/deploy/start_nginx.sh
       timeout: 300
       runas: root
