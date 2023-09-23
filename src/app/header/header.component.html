@@ -7,7 +7,7 @@
   <span>Welcome</span>
   <div class="spacer"></div>
   <span *ngIf="usersign">Profile: {{authService.userName$|async}}</span>
-  <button *ngIf="!usersign" mat-button color="accent" [routerLink]="['/signin']">CHanges to check</button>
+  <button *ngIf="!usersign" mat-button color="accent" [routerLink]="['/signin']">Whats up</button>
   <button *ngIf="usersign" mat-button color="accent" (click)="logout()">Log out</button>
 </div>
 <div class="content" role="main">
