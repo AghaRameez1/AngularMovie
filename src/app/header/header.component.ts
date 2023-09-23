@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  title = 'learning-app';
+  title = 'Testing-app';
   usersign: boolean = false;
   email: any = window.localStorage.getItem('email')
   constructor(private apiService: ApiService, public authService: AuthserviceService, private _router: Router) {
