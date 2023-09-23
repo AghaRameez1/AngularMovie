@@ -1,3 +1,3 @@
 #!/bin/bash
-systemctl start nginx
+sudo systemctl start nginx
 

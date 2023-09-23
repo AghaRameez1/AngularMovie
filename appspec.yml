@@ -14,13 +14,13 @@ hooks:
   BeforeInstall:
     - location: deploy/stop_service.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
   Install:
     - location: deploy/start.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
   AfterInstall:
     # start the application
     - location: deploy/start_nginx.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
