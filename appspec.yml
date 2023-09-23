@@ -3,24 +3,19 @@ os: linux
 files:
   # unzip the build artifact in ~/app
   - source: /
-    destination: /home/ubuntu/app
-permissions:
-  # change permissions from root to ec2-user
-  - object: /home/ubuntu/app
-    pattern: "**"
-    owner: ubuntu
-    group: ubuntu
+    destination: /var/www/html/
+    overwrite: true
 hooks:
   BeforeInstall:
     - location: deploy/stop_service.sh
       timeout: 300
-      runas: ubuntu
+      runas: root
   Install:
     - location: deploy/start.sh
       timeout: 300
-      runas: ubuntu
+      runas: root
   AfterInstall:
     # start the application
     - location: deploy/start_nginx.sh
       timeout: 300
-      runas: ubuntu
+      runas: root
