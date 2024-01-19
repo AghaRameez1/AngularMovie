@@ -1,7 +1,7 @@
 name: PR task completion checks
 on:
   pull_request:
-    types: [opened, edited]
+
 jobs:
   task-check:
     runs-on: ubuntu-latest
