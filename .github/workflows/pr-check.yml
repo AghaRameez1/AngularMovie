@@ -1,10 +1,7 @@
 name: PR task completion checks
 on:
   pull_request:
-    branches-ignore:
-      - main
-      - master
-    types: [opened, edited]
+
 jobs:
   task-check:
     runs-on: ubuntu-latest
