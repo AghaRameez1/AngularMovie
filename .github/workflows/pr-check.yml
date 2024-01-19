@@ -1,0 +1,14 @@
+name: PR task completion checks
+on:
+  pull_request:
+    branches-ignore:
+      - main
+      - master
+    types: [opened, edited]
+jobs:
+  task-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kentaro-m/task-completed-checker-action@v0.1.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
