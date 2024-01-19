@@ -7,7 +7,7 @@ on:
     types: [opened, edited]
 jobs:
   task-check:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: kentaro-m/task-completed-checker-action@v0.1.0
         with:
